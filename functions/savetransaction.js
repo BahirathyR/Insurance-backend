@@ -2,12 +2,12 @@
 // const bc_client = require('../blockchain_sample_client'); const bcrypt =
 // require('bcryptjs');
 var bcSdk = require('../fabcar/invoke');
-const  loanpage = require('../models/loandetails');
+const  patientpage = require('../models/patientdetails');
 
 exports.savetransaction = (userId,transactionstring) => {
     return new Promise((resolve, reject) => {
 
-    const newloanpage =new loanpage ({
+    const newpage =new patientpage ({
 
         userId:userId,
        transactionstring: transactionstring,
@@ -15,18 +15,18 @@ exports.savetransaction = (userId,transactionstring) => {
         
    });
 
-   newloanpage.save()
+   newpage.save()
    
    
    
 
    .then(() => resolve({
     status: 201,
-    message: 'your loan details entered successfully !'
+    message: 'your patient details entered successfully !'
 }))
 
 .then(() => 
-bcSdk.savetransaction({ TransactionDetails: newloanpage})
+bcSdk.savetransaction({ TransactionDetails: newpage})
 )
         .catch(err => {
             if (err.code == 11000) {

@@ -121,7 +121,7 @@ function getparticulardetails(params) {
             console.error("Caught Error", err);
         });
 }
-function getloandetails(params) {
+function getpatientdetails(params) {
     console.log(params, 'data in params for query method')
     return Promise.resolve().then(() => {
             console.log("Create a client and set the wallet location");
@@ -233,6 +233,6 @@ function getloandetails(params) {
 module.exports = {
     readIndex:readIndex,
     getparticulardetails: getparticulardetails,
-    getloandetails:getloandetails,
+    getpatientdetails:getpatientdetails,
     getHistory:getHistory
 };

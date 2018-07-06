@@ -1,18 +1,18 @@
 'use strict';
 
-const creditscore = require('./functions/creditscore');
+// const creditscore = require('./functions/creditscore');
 const login = require('./functions/login');
 const registerUser = require('./functions/registerUser');
-const loan = require('./functions/loan');
-const getloandetails = require('./functions/getloandetails');
-const getdetailsuser = require('./functions/getdetailsuser');
-const getparticulardetails = require('./functions/getparticulardetails');
+// const loan = require('./functions/loan');
+const getpatietdetails = require('./functions/getpatientdetails');
+// const getdetailsuser = require('./functions/getdetailsuser');
+// const getparticulardetails = require('./functions/getparticulardetails');
 const getHistory = require('./functions/getHistory');
-const readRequest = require('./functions/readRequest');
-const preclosing = require('./functions/preclosing');
-const loanschedule = require('./functions/loanschedule');
-const getloanschedule = require('./functions/getloanschedule');
-const approveloan = require('./functions/approveloan');
+// const readRequest = require('./functions/readRequest');
+// const preclosing = require('./functions/preclosing');
+// const loanschedule = require('./functions/loanschedule');
+// const getloanschedule = require('./functions/getloanschedule');
+// const approveloan = require('./functions/approveloan');
 const updatetransaction = require('./functions/updatetransaction');
 const savetransaction = require('./functions/savetransaction');
 const register = require('./models/register');
@@ -33,201 +33,201 @@ var path = require('path');
 
 module.exports = router => {
 
-   router.post('/creditscore', cors(), (req, res) => {
+//    router.post('/creditscore', cors(), (req, res) => {
 
-        console.log("credit....>>>",req.body);
-        console.log("entering register function in functions ");
-        const requestid = parseInt(req.body.records);
-        console.log(requestid);
+//         console.log("credit....>>>",req.body);
+//         console.log("entering register function in functions ");
+//         const requestid = parseInt(req.body.records);
+//         console.log(requestid);
        
 
 
-        creditscore
-            .creditscore(requestid)
-            .then(result => {
+//         creditscore
+//             .creditscore(requestid)
+//             .then(result => {
 
-                console.log("res123----",result);
-                res.status(result.status).json({
-                    message: "credit score generated ",
-                    creditscore: result.creditscore
-
-
-                });
-
-            })
-            .catch(err => res.status(err.status).json({
-                message: err.message
-            }).json({
-                status: err.status
-            }));
-
-    }); 
+//                 console.log("res123----",result);
+//                 res.status(result.status).json({
+//                     message: "credit score generated ",
+//                     creditscore: result.creditscore
 
 
-    router.post('/registerUser', cors(), (req, res) => { 
+//                 });
 
-        const firstname = req.body.firstname;
-        console.log(firstname);
-        const lastname = req.body.lastname;
-        console.log(lastname);
-        const phonenumber = parseInt(req.body.phonenumber);
-        console.log(phonenumber);
-        const dateofbirth = req.body.dateofbirth;
-        console.log(dateofbirth);
-        const email = req.body.email;
-        console.log(email);
-        const password = req.body.password;
-        console.log(password);
-        const retypepassword = req.body.retypepassword;
-        console.log(retypepassword);
-        const usertype = req.body.usertype;
-        console.log(usertype);
-        var  userId = "";
-        var possible = "0123456789674736728367382772898366377267489457636736273448732432642326734"
-        for (var i = 0; i < 3; i++)
-            userId += (possible.charAt(Math.floor(Math.random() * possible.length))).toString();
-        console.log("userId" + userId)
+//             })
+//             .catch(err => res.status(err.status).json({
+//                 message: err.message
+//             }).json({
+//                 status: err.status
+//             }));
+
+//     }); 
 
 
-        if (!firstname || !lastname || !phonenumber|| !dateofbirth || !email || !password || !retypepassword || !usertype || !userId) {
+//     router.post('/registerUser', cors(), (req, res) => { 
 
-            res
-                .status(400)
-                .json({
-                    message: 'Invalid Request !'
-                });
+//         const firstname = req.body.firstname;
+//         console.log(firstname);
+//         const lastname = req.body.lastname;
+//         console.log(lastname);
+//         const phonenumber = parseInt(req.body.phonenumber);
+//         console.log(phonenumber);
+//         const dateofbirth = req.body.dateofbirth;
+//         console.log(dateofbirth);
+//         const email = req.body.email;
+//         console.log(email);
+//         const password = req.body.password;
+//         console.log(password);
+//         const retypepassword = req.body.retypepassword;
+//         console.log(retypepassword);
+//         const usertype = req.body.usertype;
+//         console.log(usertype);
+//         var  userId = "";
+//         var possible = "0123456789674736728367382772898366377267489457636736273448732432642326734"
+//         for (var i = 0; i < 3; i++)
+//             userId += (possible.charAt(Math.floor(Math.random() * possible.length))).toString();
+//         console.log("userId" + userId)
 
-        } else {
 
-            registerUser
-                .registerUser(firstname, lastname, phonenumber,dateofbirth,email,password, retypepassword,usertype,userId)
-                .then(result => {
+//         if (!firstname || !lastname || !phonenumber|| !dateofbirth || !email || !password || !retypepassword || !usertype || !userId) {
 
-                    res.send({
-                        "message": "user has been registered successfully",
-                        "status": true,
+//             res
+//                 .status(400)
+//                 .json({
+//                     message: 'Invalid Request !'
+//                 });
+
+//         } else {
+
+//             registerUser
+//                 .registerUser(firstname, lastname, phonenumber,dateofbirth,email,password, retypepassword,usertype,userId)
+//                 .then(result => {
+
+//                     res.send({
+//                         "message": "user has been registered successfully",
+//                         "status": true,
 
 
-                    });
+//                     });
 
 
-                })
-                .catch(err => res.status(err.status).json({
-                    message: err.message
-                }).json({
-                    status: err.status
-                }));
-        }
-    });
+//                 })
+//                 .catch(err => res.status(err.status).json({
+//                     message: err.message
+//                 }).json({
+//                     status: err.status
+//                 }));
+//         }
+//     });
 
-    router.post('/login', cors(), (req, res) => {
-        console.log("entering login function in functions ");
-        const emailid = req.body.email;
-        console.log(emailid);
-        const passwordid = req.body.password;
-        console.log(passwordid);
+//     router.post('/login', cors(), (req, res) => {
+//         console.log("entering login function in functions ");
+//         const emailid = req.body.email;
+//         console.log(emailid);
+//         const passwordid = req.body.password;
+//         console.log(passwordid);
        
        
-        login
-            .loginUser(emailid, passwordid)
-            .then(result => {   
-                console.log("result ===>>>",result.users.usertype)
+//         login
+//             .loginUser(emailid, passwordid)
+//             .then(result => {   
+//                 console.log("result ===>>>",result.users.usertype)
 
 
-                res.send({
-                    "message": "Login Successful",
-                    "status": true,
-                    "usertype":result.users.usertype,
-                    "userId":result.users.userId
+//                 res.send({
+//                     "message": "Login Successful",
+//                     "status": true,
+//                     "usertype":result.users.usertype,
+//                     "userId":result.users.userId
 
-                });
+//                 });
 
-            })
-            .catch(err => res.status(err.status).json({
-                message: err.message
-            }).json({
-                status: err.status
-            }));
+//             })
+//             .catch(err => res.status(err.status).json({
+//                 message: err.message
+//             }).json({
+//                 status: err.status
+//             }));
 
-    });
-    cloudinary.config({
-        cloud_name: 'diyzkcsmp',
-        api_key: '188595956976777',
-        api_secret: 'F7ajPhx0uHdohqfbjq2ykBZcMiw'
-    });
+//     });
+//     cloudinary.config({
+//         cloud_name: 'diyzkcsmp',
+//         api_key: '188595956976777',
+//         api_secret: 'F7ajPhx0uHdohqfbjq2ykBZcMiw'
+//     });
 
-    router.post('/UploadDocs', multipartMiddleware, function(req, res, next) {
-        console.log("req123..",req.body)
-        const id = req.query['requestid'];
-        console.log(id)
-        var photo = new Photo(req.body);
-        console.log("req.files.image" + JSON.stringify(req.files));
-        var imageFile = req.files.file.path;
-        cloudinary
-            .uploader
-            .upload(imageFile, {
-                tags: 'express_sample'
-            })
-            .then(function(image) {
-                console.log('** file uploaded to Cloudinary service');
-                console.dir(image);
-                photo.url = image.url;
-                photo.requestid = id;
-                // photo.claimno = claimno;
-                // Save photo with image metadata
-                return photo.save();
-            })
-            .then(function(photo) {
+//     router.post('/UploadDocs', multipartMiddleware, function(req, res, next) {
+//         console.log("req123..",req.body)
+//         const id = req.query['requestid'];
+//         console.log(id)
+//         var photo = new Photo(req.body);
+//         console.log("req.files.image" + JSON.stringify(req.files));
+//         var imageFile = req.files.file.path;
+//         cloudinary
+//             .uploader
+//             .upload(imageFile, {
+//                 tags: 'express_sample'
+//             })
+//             .then(function(image) {
+//                 console.log('** file uploaded to Cloudinary service');
+//                 console.dir(image);
+//                 photo.url = image.url;
+//                 photo.requestid = id;
+//                 // photo.claimno = claimno;
+//                 // Save photo with image metadata
+//                 return photo.save();
+//             })
+//             .then(function(photo) {
 
-                res.send({
-                    url: photo._doc.url,
-                    //claimno: photo._doc.claimno,
-                    message: "files uploaded succesfully"
-                });
-            })
-            .finally(function() {
+//                 res.send({
+//                     url: photo._doc.url,
+//                     //claimno: photo._doc.claimno,
+//                     message: "files uploaded succesfully"
+//                 });
+//             })
+//             .finally(function() {
 
-                res.render('photos/create_through_server', {
-                    photo: photo,
-                    upload: photo.image
-                });
-            });
-    });
+//                 res.render('photos/create_through_server', {
+//                     photo: photo,
+//                     upload: photo.image
+//                 });
+//             });
+//     });
 
-    router.get('/images/id', cors(), (req, res) => { 
+//     router.get('/images/id', cors(), (req, res) => { 
      
-        console.log("req123..",req.body)
-        const id = req.query['requestid'];
-        console.log(id)
+//         console.log("req123..",req.body)
+//         const id = req.query['requestid'];
+//         console.log(id)
   
-    //     console.log("req123...",req.body)
-    //     const id = req.body.requestid
-    //    console.log("id" + id);
-        Photo
-            .find({
-                "requestid": id
-            })
-            .then((images) => {
-                console.log("enter in to the photo",images);
-                var image = [];
-                console.log("length",images.length);
-                for (let i = 0; i < images.length; i++) {
-                    image.push(images[i]._doc)
+//     //     console.log("req123...",req.body)
+//     //     const id = req.body.requestid
+//     //    console.log("id" + id);
+//         Photo
+//             .find({
+//                 "requestid": id
+//             })
+//             .then((images) => {
+//                 console.log("enter in to the photo",images);
+//                 var image = [];
+//                 console.log("length",images.length);
+//                 for (let i = 0; i < images.length; i++) {
+//                     image.push(images[i]._doc)
 
-                }
+//                 }
 
-                res.send({
-                    images: image,
-                    message: "image fetched succesfully"
-                });
-            })
+//                 res.send({
+//                     images: image,
+//                     message: "image fetched succesfully"
+//                 });
+//             })
 
-    });
-
-
+//     });
 
 
-    router.post('/loandetails', cors(), (req, res) => {
+
+
+    router.post('/patientdetails', cors(), (req, res) => {
         console.log("body========>",req.body)
         // const requestid = req.body.requestid;
         // console.log("line number 203----->",requestid);
@@ -267,58 +267,58 @@ module.exports = router => {
 
     });
 
- router.get('/getdetailsuser', cors(), (req, res) => {
+//  router.get('/getdetailsuser', cors(), (req, res) => {
        
-        getdetailsuser
-                .getdetailsuser()
+//         getdetailsuser
+//                 .getdetailsuser()
 
-                .then(function(result) {
-                    console.log("result---",result)
+//                 .then(function(result) {
+//                     console.log("result---",result)
 
-                    res.send({
-                        status: result.status,
-                        message: result.usr
-                    });
-                })
-                .catch(err => res.status(err.status).json({
-                    message: err.message
-                }));
-
-
-    }); 
+//                     res.send({
+//                         status: result.status,
+//                         message: result.usr
+//                     });
+//                 })
+//                 .catch(err => res.status(err.status).json({
+//                     message: err.message
+//                 }));
 
 
-    router.get('/getparticulardetails', cors(), (req, res) => {
-       if (1 == 1) {
+//     }); 
+
+
+//     router.get('/getparticulardetails', cors(), (req, res) => {
+//        if (1 == 1) {
             
-                        const requestid1 = checkToken(req);
-                        console.log("requestid1", requestid1);
-                        const requestid = requestid1;
+//                         const requestid1 = checkToken(req);
+//                         console.log("requestid1", requestid1);
+//                         const requestid = requestid1;
             
             
-                        getparticulardetails.getparticulardetails(requestid)
-                        .then(function(result) {
-                            console.log("requestid1",requestid1)
-                            console.log("result.query",result.query)
-                              return res.json({
-                                 "status":200,
-                                 "message": result.query
-                             });
-                         })
-                         .catch(err => res.status(err.status).json({
-                             message: err.message
-                         }));
-                 } else {
-                     res.status(401).json({
-                         "status": false,
-                         message: 'cant fetch data !'
-                     });
-                 }
-                });
+//                         getparticulardetails.getparticulardetails(requestid)
+//                         .then(function(result) {
+//                             console.log("requestid1",requestid1)
+//                             console.log("result.query",result.query)
+//                               return res.json({
+//                                  "status":200,
+//                                  "message": result.query
+//                              });
+//                          })
+//                          .catch(err => res.status(err.status).json({
+//                              message: err.message
+//                          }));
+//                  } else {
+//                      res.status(401).json({
+//                          "status": false,
+//                          message: 'cant fetch data !'
+//                      });
+//                  }
+//                 });
 
-                router.get('/getHistory',(req,res)=>{
+                router.post('/getHistory',(req,res)=>{
                     console.log("requ...123>>>ui>>>",req.body);
-                    const userId = checkToken(req);
+                    const userId = req.body.userId;
                     console.log("userId", userId);
                     
 
@@ -362,188 +362,187 @@ module.exports = router => {
     });
 
 
-    router.post('/approveloan', cors(), (req, res) => {
-        console.log(req.body)
-       const userId =req.body.id ;
-        console.log(userId);
-        const transactionstring = req.body.transactionstring;
-        console.log(transactionstring);
-        console.log("legal..123>>>",transactionstring.legal)
+    // router.post('/approveloan', cors(), (req, res) => {
+    //     console.log(req.body)
+    //    const userId =req.body.id ;
+    //     console.log(userId);
+    //     const transactionstring = req.body.transactionstring;
+    //     console.log(transactionstring);
+    //     console.log("legal..123>>>",transactionstring.legal)
 
-        if (transactionstring.legal =="approved") {
+    //     if (transactionstring.legal =="approved") {
             
-            res
-                .status(200)
-                .json({
-                    message: 'Your Request has been approved !'
-                });
+    //         res
+    //             .status(200)
+    //             .json({
+    //                 message: 'Your Request has been approved !'
+    //             });
 
-        } else {
-             res
-                .status(200)
-                .json({
-                    message: 'Your Request has been rejected !'
-                });
-            }
+    //     } else {
+    //          res
+    //             .status(200)
+    //             .json({
+    //                 message: 'Your Request has been rejected !'
+    //             });
+    //         }
 
-        updatetransaction
-        .updatetransaction(userId,transactionstring)
-        .then(result =>  {
-            console.log("result....",result)     
+    //     updatetransaction
+    //     .updatetransaction(userId,transactionstring)
+    //     .then(result =>  {
+    //         console.log("result....",result)     
         
-        })
-    });
+    //     })
+    // });
 
 
-    router.get("/readRequest", (req, res) => {
-        //    var requestList = [];
+    // router.get("/readRequest", (req, res) => {
+    //     //    var requestList = [];
 
-        if (1 == 1) {
+    //     if (1 == 1) {
 
-            const requestid = checkToken(req);
-            console.log("requestid1", requestid);
-            const requestid1 = requestid;
+    //         const requestid = checkToken(req);
+    //         console.log("requestid1", requestid);
+    //         const requestid1 = requestid;
 
 
-            readRequest.readRequest(requestid)
-                .then(function(result) {
-                    readAlldata = result.query;
-                    console.log("readAlldata ---", readAlldata);
-                    return res.json({
-                        "status": 200,
-                        "message": result.query
-                    });
-                })
-                .catch(err => res.status(err.status).json({
-                    message: err.message
-                }));
-        } else {
-            res.status(401).json({
-                "status": false,
-                message: 'cant fetch data !'
-            });
-        }
-    });
+    //         readRequest.readRequest(requestid)
+    //             .then(function(result) {
+    //                 readAlldata = result.query;
+    //                 console.log("readAlldata ---", readAlldata);
+    //                 return res.json({
+    //                     "status": 200,
+    //                     "message": result.query
+    //                 });
+    //             })
+    //             .catch(err => res.status(err.status).json({
+    //                 message: err.message
+    //             }));
+    //     } else {
+    //         res.status(401).json({
+    //             "status": false,
+    //             message: 'cant fetch data !'
+    //         });
+    //     }
+    // });
 
-    router.post('/preclosingUser', cors(), (req, res) => {
+    // router.post('/preclosingUser', cors(), (req, res) => {
 
-                const requestid = req.body.requestid;
-                console.log(requestid);
+    //             const requestid = req.body.requestid;
+    //             console.log(requestid);
 
-                const emiremaining = req.body.emiremaining;
-                console.log(emiremaining);
+    //             const emiremaining = req.body.emiremaining;
+    //             console.log(emiremaining);
         
-                const penaltyforclosure = req.body.penaltyforclosure;
-                console.log("penalty",penaltyforclosure);
+    //             const penaltyforclosure = req.body.penaltyforclosure;
+    //             console.log("penalty",penaltyforclosure);
         
-                const installmentpermonth = req.body.installmentpermonth;
-                console.log(installmentpermonth);
-                const documentrequiredforclosing = req.body.documentrequiredforclosing;
-                console.log(documentrequiredforclosing);
-                const paymentmode = req.body.paymentmode;
-                console.log(paymentmode);
+    //             const installmentpermonth = req.body.installmentpermonth;
+    //             console.log(installmentpermonth);
+    //             const documentrequiredforclosing = req.body.documentrequiredforclosing;
+    //             console.log(documentrequiredforclosing);
+    //             const paymentmode = req.body.paymentmode;
+    //             console.log(paymentmode);
         
-                if (!requestid||!emiremaining || !penaltyforclosure || !installmentpermonth || !documentrequiredforclosing || !paymentmode) {
+    //             if (!requestid||!emiremaining || !penaltyforclosure || !installmentpermonth || !documentrequiredforclosing || !paymentmode) {
         
-                    res
-                        .status(400)
-                        .json({
-                            message: 'Invalid Request !'
-                        });
+    //                 res
+    //                     .status(400)
+    //                     .json({
+    //                         message: 'Invalid Request !'
+    //                     });
         
-                } else {
+    //             } else {
         
-                    preclosing
-                        .preclosingUser(requestid,emiremaining,penaltyforclosure,installmentpermonth,documentrequiredforclosing,paymentmode)
-                        .then(result => {
+    //                 preclosing
+    //                     .preclosingUser(requestid,emiremaining,penaltyforclosure,installmentpermonth,documentrequiredforclosing,paymentmode)
+    //                     .then(result => {
         
-                            res.send({
-                                "message": "preclosing request accepted",
-                                "status": true,
+    //                         res.send({
+    //                             "message": "preclosing request accepted",
+    //                             "status": true,
         
-                            });
+    //                         });
         
         
-                        })
-                        .catch(err => res.status(err.status).json({
-                            message: err.message
-                        }))
-                }
-            });
+    //                     })
+    //                     .catch(err => res.status(err.status).json({
+    //                         message: err.message
+    //                     }))
+    //             }
+    //         });
 
-          router.post('/loanscheduleUser', cors(), (req, res) => {
+    //       router.post('/loanscheduleUser', cors(), (req, res) => {
 
-                console.log("ui....123>>>",req.body);
-                const requestid = req.body.requestid;
-                console.log(requestid);
-                const transactionstring = req.body.transactionstring;
-                console.log(transactionstring);
+    //             console.log("ui....123>>>",req.body);
+    //             const requestid = req.body.requestid;
+    //             console.log(requestid);
+    //             const transactionstring = req.body.transactionstring;
+    //             console.log(transactionstring);
                 
-                         loanschedule
-                             .loanscheduleUser(requestid,transactionstring)
-                                .then(result => {
-                                    if(!requestid) {
-                                        res
-                                        .status(400)
-                                        .json({
-                                            message: 'Invalid Request !'
-                                        });
-                                    } 
-                                    else {
-                                    updatetransaction
-                                    .updatetransaction(requestid,transactionstring)
-                                    .then(function(result) {
-                                        console.log("result....",result)                                    
-                                    res.send({
-                                        "message": "loanschedule created successfully",
-                                        "status": true,
+    //                      loanschedule
+    //                          .loanscheduleUser(requestid,transactionstring)
+    //                             .then(result => {
+    //                                 if(!requestid) {
+    //                                     res
+    //                                     .status(400)
+    //                                     .json({
+    //                                         message: 'Invalid Request !'
+    //                                     });
+    //                                 } 
+    //                                 else {
+    //                                 updatetransaction
+    //                                 .updatetransaction(requestid,transactionstring)
+    //                                 .then(function(result) {
+    //                                     console.log("result....",result)                                    
+    //                                 res.send({
+    //                                     "message": "loanschedule created successfully",
+    //                                     "status": true,
                 
-                                    });
+    //                                 });
                 
                 
-                                })
+    //                             })
                             
-                                .catch(err => res.status(err.status).json({
-                                    message: err.message
-                                }))
-                            }
-                            });
+    //                             .catch(err => res.status(err.status).json({
+    //                                 message: err.message
+    //                             }))
+    //                         }
+    //                         });
                         
-                    }); 
+    //                 }); 
 
-                    router.post('/getloanschedule', cors(), (req, res) => {
+    //                 router.get('/getloanschedule', cors(), (req, res) => {
 
-                                console.log(req.body);
-                                console.log(req.body.requestid);
-                                var requestid = req.body.requestid;
-                                getloanschedule
-                                    .getloanschedule(requestid)
-                                    .then(function(result) {
-                                        console.log(result)
+    //                             console.log(req.body);
+    //                             console.log(req.body.requestid);
+    //                             var requestid = req.body.requestid;
+    //                             getloanschedule
+    //                                 .getloanschedule(requestid)
+    //                                 .then(function(result) {
+    //                                     console.log(result)
                         
-                                        res.send({
-                                            status: result.status,
-                                            message: result.usr
-                                        });
-                                    })
-                                    .catch(err => res.status(err.status).json({
-                                        message: err.message
-                                    }));
+    //                                     res.send({
+    //                                         status: result.status,
+    //                                         message: result.usr
+    //                                     });
+    //                                 })
+    //                                 .catch(err => res.status(err.status).json({
+    //                                     message: err.message
+    //                                 }));
                         
                         
-                            }); 
+    //                         }); 
 
-                            router.get("/getloandetails", cors(), (req, res) => {
+                             router.get("/getpatientdetails", cors(), (req, res) => {
                                 
-                                        
-                                
+                                                                       
                                             var startKey = '000';
                                             console.log("startKey", startKey);
                                             var endKey = '999';
                                             console.log("endKey--", endKey);
                                 
                                             getloandetails
-                                                .getloandetails(startKey, endKey)
+                                                .getpatientdetails(startKey, endKey)
                                                 .then(function(result) {
 
                                                     console.log("  result.query1234..>>>", result.query);
@@ -661,38 +660,38 @@ module.exports = router => {
 
 
 
-     router.get("/readIndex", cors(), (req, res) => {
+//      router.get("/readIndex", cors(), (req, res) => {
 
-          if (1==1) {
+//           if (1==1) {
                                             
-            readIndex
-              .readIndex({})
-                    .then(function(result) {
-                    console.log("result",result);
-                     var firstrequest = result.query[0]
-                       console.log("firstrequest--", firstrequest);
-                       var length = result.query.length;
-                        var lastrequest = result.query[length - 1];
-                          console.log("lastrequest--", lastrequest);
-                          console.log("query",result);
+//             readIndex
+//               .readIndex({})
+//                     .then(function(result) {
+//                     console.log("result",result);
+//                      var firstrequest = result.query[0]
+//                        console.log("firstrequest--", firstrequest);
+//                        var length = result.query.length;
+//                         var lastrequest = result.query[length - 1];
+//                           console.log("lastrequest--", lastrequest);
+//                           console.log("query",result);
                                             
-                                       return res.json({
-                                                "status": 200,
-                                                "result": result
-                                                       });
-                                                   })
-                                                .catch(err => res.status(err.status).json({
-                                                     message: err.message
-                                                    }));
-                                                    } else {
-                                                        res
-                                                            .status(401)
-                                                            .json({
-                                                                "status": false,
-                                                                message: 'cant fetch data !'
-                                                            });
-                                                    }
-                                                });
+//                                        return res.json({
+//                                                 "status": 200,
+//                                                 "result": result
+//                                                        });
+//                                                    })
+//                                                 .catch(err => res.status(err.status).json({
+//                                                      message: err.message
+//                                                     }));
+//                                                     } else {
+//                                                         res
+//                                                             .status(401)
+//                                                             .json({
+//                                                                 "status": false,
+//                                                                 message: 'cant fetch data !'
+//                                                             });
+//                                                     }
+//                                                 });
                                             
 
 
@@ -737,6 +736,6 @@ module.exports = router => {
         
                    return false;
                 }
-            }
+             }
 
-  }
+}

@@ -1,5 +1,5 @@
 var bcSdk = require('../fabcar/query');
-const user = require('../models/loandetails');
+const user = require('../models/patientdetails');
 //const user = require('../models/fetchdata');
 
        

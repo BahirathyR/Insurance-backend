@@ -1,11 +1,11 @@
 'use strict';
 
-const  loanpage = require('../models/loandetails');
+const  loanpage = require('../models/patientdetails');
 //const user = require('../models/fetchdata');
 
 
 
-exports.loandetails = (requestid,transactionstring) => {
+exports.patientdetails = (requestid,transactionstring) => {
     
 return new Promise((resolve, reject) => { 
    
