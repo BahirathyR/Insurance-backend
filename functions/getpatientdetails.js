@@ -1,6 +1,6 @@
 'use strict';
 var bcSdk = require('../fabcar/query');
-//const user = require('../models/loandetails');
+// const user = require('../models/patientdetails');
 
 
 exports.getpatientdetails = (startKey,endKey) => {
@@ -10,7 +10,8 @@ exports.getpatientdetails = (startKey,endKey) => {
         console.log("endKey---",endKey);
         console.log("entering into readAllrequest function.......!")
         
-       bcSdk.getpatientdetails({
+       bcSdk
+       .getpatientdetails({
             startKey: startKey,
             endKey:endKey
         })

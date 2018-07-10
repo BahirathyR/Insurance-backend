@@ -17,13 +17,12 @@ return new Promise((resolve, reject) => {
 
    .then(() => resolve({ 
     status: 201,
-    message: 'user loan details updated successfully!',
+    message: 'user patient details updated successfully!',
    // creditscore: transactionstring.creditscore
 }))
   
     .then(() => 
-    bcSdk
-        .updatetransaction({
+    bcSdk.updatetransaction({
             updatedetails: newupdatepage
         })
     )
